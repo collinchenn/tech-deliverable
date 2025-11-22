@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Quote from "./components/Quote";
 import "./App.css";
 
 function App() {
@@ -69,13 +70,12 @@ function App() {
 					<p>There are no quotes yet</p>
 				) : (
 					quotes.map((quote, index) => (
-						<div key={index} className="quote">
-							<p className="quote-message">"{quote.message}"</p>
-							<p className="quote-name">— {quote.name}</p>
-							<p className="quote-time">
-								{new Date(quote.time).toLocaleString()}
-							</p>
-						</div>
+						<Quote
+							key={index}
+							name={quote.name}
+							message={quote.message}
+							time={quote.time}
+						/>
 					))
 				)}
 			</div>
