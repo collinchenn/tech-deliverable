@@ -7,6 +7,12 @@ import "./App.css";
 function App() {
 	const [quotes, setQuotes] = useState([]);
 	const [maxAge, setMaxAge] = useState("all");
+	const [sortOrder, setSortOrder] = useState("desc");
+	const sortedQuotes = [...quotes].sort((a, b) => {
+		const aTime = new Date(a.time).getTime();
+		const bTime = new Date(b.time).getTime();
+		return sortOrder === "desc" ? bTime - aTime : aTime - bTime;
+	});
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -79,12 +85,24 @@ function App() {
 			<h2>Previous Quotes</h2>
 
 			<QuoteFilter maxAge={maxAge} onChange={setMaxAge} />
+			
+			<label htmlFor="sort-order-select" style={{ marginLeft: "0.75rem" }}>
+				Sort by:
+			</label>
+			<select
+				id="sort-order-select"
+				value={sortOrder}
+				onChange={(e) => setSortOrder(e.target.value)}
+			>
+				<option value="desc">Latest</option>
+				<option value="asc">Earliest</option>
+			</select>
 
 			<div className="messages">
-				{quotes.length === 0 ? (
+				{sortedQuotes.length === 0 ? (
 					<p>There are no quotes yet</p>
 				) : (
-					quotes.map((quote, index) => (
+					sortedQuotes.map((quote, index) => (
 						<Quote
 							key={index}
 							name={quote.name}
