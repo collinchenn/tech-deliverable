@@ -85,7 +85,7 @@ button[type="submit"] {
 	padding: 0.5rem 1.2rem;
 	border-radius: 999px;
 	border: none;
-	background: #4845f7;
+	background: #6366f1;
 	color: white;
 	font-weight: 600;
 	font-size: 0.9rem;
@@ -99,7 +99,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-	background: #3e37ce;
+	background: #4f46e5;
 }
 
 .controls-row {
@@ -179,6 +179,24 @@ button[type="submit"]:hover {
 	font-size: 0.98rem;
 	color: #111827;
 	padding-left: 1.4rem;
+}
+
+.quote-toggle-row {
+	display: flex;
+	justify-content: flex-end;
+	margin: 0.1rem 0 0.15rem;
+	padding-right: 0.1rem;
+}
+
+.quote-toggle {
+	font-size: 0.9rem;
+	font-weight: 500;
+	color: #111827;
+	cursor: pointer;
+}
+
+.quote-toggle:hover {
+	text-decoration: underline;
 }
 
 .quote-name {

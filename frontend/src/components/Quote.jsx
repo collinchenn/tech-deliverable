@@ -16,13 +16,14 @@ function Quote({ name, message, time }) {
 			<p className="quote-message">"{displayText}"</p>
 
 			{isLong && (
-				<button
-					type="button"
-					className="quote-toggle"
-					onClick={() => setExpanded((prev) => !prev)}
-				>
-					{expanded ? "Show less" : "Show more"}
-				</button>
+				<div className="quote-toggle-row">
+                    <span
+                        className="quote-toggle"
+                        onClick={() => setExpanded((prev) => !prev)}
+                    >
+                        {expanded ? "Show less" : "Show more"}
+                    </span>
+                </div>
 			)}
 
 			<p className="quote-name">- {name}</p>
