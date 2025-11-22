@@ -6,6 +6,33 @@ function App() {
 	const [quotes, setQuotes] = useState([]);
 	const [maxAge, setMaxAge] = useState("all");
 
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+
+		const form = event.target;
+		const formData = new FormData(form);
+
+		try {
+			const res = await fetch("/api/quote", {
+				method: "POST",
+				body: formData,
+			});
+
+			if (!res.ok) {
+				console.error("ERROR: problem submitting quote:", res.status);
+				return;
+			}
+
+			const newQuote = await res.json();
+			// now setQuotes is in scope ✅
+			setQuotes((prevQuotes) => [...prevQuotes, newQuote]);
+
+			form.reset();
+		} catch (error) {
+			console.error("ERROR: problem submitting quote:", error);
+		}
+	};
+
 	useEffect(() => {
 		const controller = new AbortController();
 
@@ -21,7 +48,7 @@ function App() {
 					console.error("ERROR: failed to fetch quotes:", res.status);
 					return;
 				}
-				
+
 				const data = await res.json();
 				setQuotes(data);
 			} catch (err) {
@@ -40,8 +67,7 @@ function App() {
 			<h1>Hack at UCI Tech Deliverable</h1>
 
 			<h2>Submit a quote</h2>
-			{/* TODO: implement custom form submission logic to not refresh the page */}
-			<form action="/api/quote" method="post">
+			<form onSubmit={handleSubmit}>
 				<label htmlFor="input-name">Name</label>
 				<input type="text" name="name" id="input-name" required />
 				<label htmlFor="input-message">Quote</label>
