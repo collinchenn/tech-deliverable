@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Quote from "./components/Quote";
 import QuoteFilter from "./components/QuoteFilter";
+import SortingFilter from "./components/SortingFilter";
 import logo from "./assets/quotebook.png";
 import "./App.css";
 
@@ -84,19 +85,10 @@ function App() {
 
 			<h2>Previous Quotes</h2>
 
-			<QuoteFilter maxAge={maxAge} onChange={setMaxAge} />
-			
-			<label htmlFor="sort-order-select" style={{ marginLeft: "0.75rem" }}>
-				Sort by:
-			</label>
-			<select
-				id="sort-order-select"
-				value={sortOrder}
-				onChange={(e) => setSortOrder(e.target.value)}
-			>
-				<option value="desc">Latest</option>
-				<option value="asc">Earliest</option>
-			</select>
+			<div className="controls-row">
+				<QuoteFilter maxAge={maxAge} onChange={setMaxAge} />
+				<SortingFilter sortOrder={sortOrder} onChange={setSortOrder} />
+			</div>
 
 			<div className="messages">
 				{sortedQuotes.length === 0 ? (
