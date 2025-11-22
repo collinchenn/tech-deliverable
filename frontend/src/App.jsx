@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Quote from "./components/Quote";
+import logo from "./assets/quotebook.png";
 import "./App.css";
 
 function App() {
@@ -24,7 +25,6 @@ function App() {
 			}
 
 			const newQuote = await res.json();
-			// now setQuotes is in scope ✅
 			setQuotes((prevQuotes) => [...prevQuotes, newQuote]);
 
 			form.reset();
@@ -63,7 +63,7 @@ function App() {
 
 	return (
 		<div className="App">
-			{/* TODO: include an icon for the quote book */}
+			<img src={logo} alt="Quote book logo" className="logo" />
 			<h1>Hack at UCI Tech Deliverable</h1>
 
 			<h2>Submit a quote</h2>
